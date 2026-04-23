@@ -5,9 +5,14 @@ const DetailContainer = styled.div`
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgb(0, 0, 0);
+`;
+const DetailBackground = styled.div`
+  
+  background-color: #6e0000;
+ 
 `;
 
 const TrackImage = styled.img`
@@ -15,7 +20,7 @@ const TrackImage = styled.img`
   height: 300px;
   object-fit: cover;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.96);
   margin-bottom: 20px;
 `;
 
@@ -23,23 +28,39 @@ const TrackTitle = styled.h1`
   font-size: 2.5rem;
   color: #e71515;
   margin-bottom: 5px;
+  
 `;
 
 const ArtistName = styled.h3`
   color: #007bff;
   font-weight: 400;
   margin-bottom: 20px;
+  strong {
+    color: #000;
+    font-weight: 600;
+  }
 `;
 
 const InfoLabel = styled.p`
   font-size: 1.1rem;
-  color: #e72626;
+  color: #002fc8;
   margin: 5px 0;
   
   strong {
     color: #000;
     font-weight: 600;
   }
+`;
+const TitleDetails = styled.h2`
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 3px solid #0360ff; /* Rojo para diferenciarlo del azul de Home */
+  display: inline-block;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  margin: 20px;
 `;
 
 const DescriptionBox = styled.div`
@@ -65,5 +86,7 @@ export{
     ArtistName,
     InfoLabel,
     DescriptionBox,
-    StatusMessage
+    StatusMessage,
+    DetailBackground,
+    TitleDetails
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { ArtistName, DescriptionBox, DetailContainer, InfoLabel, TrackImage, TrackTitle } from './styles';
+import { ArtistName, DescriptionBox, DetailBackground, DetailContainer, InfoLabel, TitleDetails, TrackImage, TrackTitle } from './styles';
 
 const SongDetail = () => {
     const { id } = useParams(); // Obtenemos el ID de la URL
@@ -34,18 +34,21 @@ const SongDetail = () => {
     if (error) return <p style={{ color: 'red', padding: '20px' }}>{error}</p>;
 
     return (
+        <DetailBackground >
+            <TitleDetails>Información</TitleDetails>
         <DetailContainer >
             <TrackTitle>{detalle?.strTrack}</TrackTitle>
             <TrackImage src={detalle?.strTrackThumb || 'https://placeholder.com'} alt={detalle.strTrack}  />
-            <ArtistName>Artista: {detalle?.strArtist}</ArtistName>
+            <ArtistName><strong>Artista:</strong> {detalle?.strArtist}</ArtistName>
             <InfoLabel><strong>Álbum:</strong> {detalle.strAlbum}</InfoLabel>
-            <p><strong>Género:</strong> {detalle.strGenre || "No especificado"}</p>
+            <InfoLabel><strong>Género:</strong> {detalle.strGenre || "No especificado"}</InfoLabel>
             {detalle.strDescriptionEN && (
                 <DescriptionBox>
                     <p>{detalle.strDescriptionEN}</p>
                 </DescriptionBox>
             )}
         </DetailContainer>
+        </DetailBackground >
     );
 };
 
