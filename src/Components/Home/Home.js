@@ -1,6 +1,7 @@
 import React from 'react';
 import ElementoCancion from '../SongElement/SongElement';
 import useFetch from '../Hooks/useFetch';
+import { HomeContainer, LoadingMessage, Title } from './styles';
 
 const Home = ({ canciones, alAñadir }) => { 
     
@@ -9,13 +10,13 @@ const Home = ({ canciones, alAñadir }) => {
 
     
     if (isLoading) {
-        return <h2 style={{ padding: '20px' }}>Cargando canciones...</h2>;
+        return <LoadingMessage >Cargando canciones...</LoadingMessage>;
     }
 
     
     return (
-        <div style={{ padding: '20px' }}>
-            <h2>Canciones Disponibles</h2>
+        <HomeContainer >
+            <Title>Canciones Disponibles</Title>
             {canciones?.map(c => (
                 <ElementoCancion
                     key={c.idTrack}
@@ -24,7 +25,7 @@ const Home = ({ canciones, alAñadir }) => {
                     textoBoton="Añadir a Biblioteca"
                 />
             ))}
-        </div>
+        </HomeContainer>
     );
 }; 
 

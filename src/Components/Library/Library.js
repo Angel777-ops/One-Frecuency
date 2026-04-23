@@ -1,11 +1,12 @@
 import React from 'react';
 import ElementoCancion from '../SongElement/SongElement';
+import { EmptyMessage, LibraryContainer, TitleLibrary } from './styles';
 
 const Library = ({ cancionesGuardadas, alEliminar }) => (
-  <div style={{ padding: '20px' }}>
-    <h2>Mi Biblioteca</h2>
+  <LibraryContainer style={{ padding: '20px' }}>
+    <TitleLibrary>Mi Biblioteca</TitleLibrary>
     {cancionesGuardadas.length === 0 ? (
-      <p>Tu biblioteca está vacía.</p>
+      <EmptyMessage>Tu biblioteca está vacía.</EmptyMessage>
     ) : (
       cancionesGuardadas?.map(c => (
         <ElementoCancion 
@@ -17,7 +18,7 @@ const Library = ({ cancionesGuardadas, alEliminar }) => (
         />
       ))
     )}
-  </div>
+  </LibraryContainer>
 );
 
 export default Library;

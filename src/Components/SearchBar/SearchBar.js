@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormContainer, SearchButton, StyledInput } from './styles';
 
 const SearchBar = ({ alBuscar }) => {
   const [texto, setTexto] = useState("");
@@ -16,18 +17,18 @@ const SearchBar = ({ alBuscar }) => {
   };
 
   return (
-    <form onSubmit={manejarEnvio} style={{ padding: '20px', textAlign: 'center' }}>
-      <input 
+    <FormContainer onSubmit={manejarEnvio} >
+      <StyledInput 
         type="text" 
         placeholder="Busca      (Artista - Canción)" 
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
         style={{ padding: '10px', width: '300px', borderRadius: '4px' }}
       />
-      <button type="submit" style={{ padding: '10px 20px', marginLeft: '10px' }}>
+      <SearchButton type="submit" >
         Buscar
-      </button>
-    </form>
+      </SearchButton>
+    </FormContainer>
   );
 };
 

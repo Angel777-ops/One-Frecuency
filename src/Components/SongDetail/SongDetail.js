@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { ArtistName, DescriptionBox, DetailContainer, InfoLabel, TrackImage, TrackTitle } from './styles';
 
 const SongDetail = () => {
     const { id } = useParams(); // Obtenemos el ID de la URL
@@ -33,18 +34,18 @@ const SongDetail = () => {
     if (error) return <p style={{ color: 'red', padding: '20px' }}>{error}</p>;
 
     return (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-            <h1>{detalle?.strTrack}</h1>
-            <img src={detalle?.strTrackThumb || 'https://placeholder.com'} alt={detalle.strTrack} style={{ width: '300px', borderRadius: '10px' }} />
-            <h3>Artista: {detalle?.strArtist}</h3>
-            <p><strong>Álbum:</strong> {detalle.strAlbum}</p>
+        <DetailContainer >
+            <TrackTitle>{detalle?.strTrack}</TrackTitle>
+            <TrackImage src={detalle?.strTrackThumb || 'https://placeholder.com'} alt={detalle.strTrack}  />
+            <ArtistName>Artista: {detalle?.strArtist}</ArtistName>
+            <InfoLabel><strong>Álbum:</strong> {detalle.strAlbum}</InfoLabel>
             <p><strong>Género:</strong> {detalle.strGenre || "No especificado"}</p>
             {detalle.strDescriptionEN && (
-                <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'justify' }}>
+                <DescriptionBox>
                     <p>{detalle.strDescriptionEN}</p>
-                </div>
+                </DescriptionBox>
             )}
-        </div>
+        </DetailContainer>
     );
 };
 

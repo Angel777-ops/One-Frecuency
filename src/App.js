@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Library from './Components/Library/Library';
 import Header from './Components/Header/Header';
-import SearchBar from './Components/SearchBar/SearchBar'; // Nuevo import
+import SearchBar from './Components/SearchBar/SearchBar'; 
 import useFetch from './Components/Hooks/useFetch';
 import SongDetail from './Components/SongDetail/SongDetail';
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./theme/GlobalStyles";
+import Theme from "./theme";
+import { NavContainer, StyledLink } from './AppStyles';
 function App() {
   const [busqueda, setBusqueda] = useState({ artista: "", cancion: "" });
   const { songs, isLoading, error } = useFetch(busqueda);
@@ -29,38 +33,43 @@ function App() {
   };
 
   return (
-    <div className='background-color'>
-      <Router>
-        <Header />
-        <nav style={{ padding: '20px', background: '#222', color: '#fff' }}>
-          <Link to="/" style={{ color: '#fff', marginRight: '15px' }}>Inicio</Link>
-          <Link to="/biblioteca" style={{ color: '#fff' }}>
-            Biblioteca ({biblioteca.length})
-          </Link>
-        </nav>
+    
+      <ThemeProvider theme={Theme}>
+        <GlobalStyle/>
+        <div className='background-color'>
+          <Router>
+            <Header />
+            <NavContainer >
+              <StyledLink to="/">Inicio</StyledLink>
+              <StyledLink to="/biblioteca" >
+                Biblioteca ({biblioteca.length})
+              </StyledLink>
+            </NavContainer>
 
-        {/* Mostramos la barra de búsqueda solo en el Inicio */}
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <>
-                <SearchBar alBuscar={manejarBusqueda} />
-                {isLoading && <p>Cargando canciones...</p>}
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <Home canciones={songs} alAñadir={agregarABiblioteca} />
-              </>
-            } 
-          />
-          <Route 
-            path="/biblioteca" 
-            element={<Library cancionesGuardadas={biblioteca} alEliminar={eliminarDeBiblioteca} />} 
-          />
+            
+            <Routes>
+              <Route 
+                path="/" 
+                element={
+                  <>
+                    <SearchBar alBuscar={manejarBusqueda} />
+                    {isLoading && <p>Cargando canciones...</p>}
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <Home canciones={songs} alAñadir={agregarABiblioteca} />
+                  </>
+                } 
+              />
+              <Route 
+                path="/biblioteca" 
+                element={<Library cancionesGuardadas={biblioteca} alEliminar={eliminarDeBiblioteca} />} 
+              />
 
-          <Route path="/song/:id" element={<SongDetail />} /> 
-        </Routes>
-      </Router>
-    </div>
+              <Route path="/song/:id" element={<SongDetail />} /> 
+            </Routes>
+          </Router>
+        </div>
+      </ThemeProvider>
+    
   );
 }
 

@@ -1,3 +1,4 @@
+import { HeaderContainer, MainTitle } from "./styles";
 
 
 const Header = () => {
@@ -5,12 +6,12 @@ const Header = () => {
 
 
     
-        return(//Renderizamos el header con el nombre de la aplicación y un mensaje de bienvenida o de inicio de sesión dependiendo del estado de isLoggedIn
-            <header >
+        return(
+            <HeaderContainer >
                 
-               <h1 className="title">One Frequency</h1>  
+               <MainTitle className="title">One Frequency</MainTitle>  
                 
-            </header>
+            </HeaderContainer>
            
         );
     

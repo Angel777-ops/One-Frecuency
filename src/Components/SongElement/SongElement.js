@@ -1,30 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ActionButton, Card, InfoText, SongImage, StyledLink } from './styles';
 
 const SongElement = ({ info, alPresionarBoton, textoBoton }) => (
-  <div style={{ 
-    border: "1px solid", 
-    margin: '10px 0', 
-    padding: '15px',
-    borderRadius: '8px' 
+  <Card style={{ 
+   
   }}>
-    {/* Línea corregida aquí abajo */}
-    <img src={info.strTrackThumb} alt={info.strTrack} width="150" />
     
-    <Link to={`/song/${info.idTrack}`} style={{ display: 'block', fontSize: '1.2em', fontWeight: 'bold', margin: '10px 0' }}>
+    <SongImage src={info.strTrackThumb} alt={info.strTrack} />
+    
+    <StyledLink to={`/song/${info.idTrack}`} >
         Canción: {info.strTrack}
-    </Link>
+    </StyledLink>
     
-    <p>Artista: {info.strArtist}</p>
-    <p>Álbum: {info.strAlbum}</p> 
+    <InfoText><span>Artista:</span> {info.strArtist}</InfoText>
+    <InfoText><span>Álbum:</span> {info.strAlbum}</InfoText> 
     
-    <button 
+    <ActionButton 
       onClick={() => alPresionarBoton(info)} 
-      style={{ marginTop: '10px', cursor: 'pointer', marginRight: '10px' }}
+      
     >
       {textoBoton}
-    </button>
-  </div>
+    </ActionButton>
+  </Card>
 );
 
 export default SongElement;
