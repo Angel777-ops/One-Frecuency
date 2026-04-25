@@ -20,10 +20,10 @@ const SearchBar = ({ alBuscar }) => {
     <FormContainer onSubmit={manejarEnvio} >
       <StyledInput 
         type="text" 
-        placeholder="Busca      (Artista - Canción)" 
+        placeholder="Busca      (Artista)" 
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
-        style={{ padding: '10px', width: '300px', borderRadius: '4px' }}
+        
       />
       <SearchButton type="submit" >
         Buscar

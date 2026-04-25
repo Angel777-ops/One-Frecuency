@@ -23,7 +23,7 @@ const useFetch = (busqueda) => {
                 if (response.data.track) {
                     setMoviesState({ songs: response.data.track, isLoading: false, error: null });
                 } else {
-                    setMoviesState({ songs: [], isLoading: false, error: "No se encontró nada con esos datos." });
+                    setMoviesState({ songs: [], isLoading: false, error: "¡No se encontró nada con esos datos!. :(" });
                 }
                 
             } catch (error) {

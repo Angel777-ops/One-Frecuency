@@ -1,32 +1,35 @@
 import React from 'react';
 import ElementoCancion from '../SongElement/SongElement';
-import useFetch from '../Hooks/useFetch';
-import { HomeContainer, LoadingMessage, Title } from './styles';
 
-const Home = ({ canciones, alAñadir }) => { 
-    
-   
-    const { movies, isLoading, error } = useFetch();
+import { HomeContainer, Title } from './styles';
+import { useSelector, useDispatch } from 'react-redux';
+import { addSong } from '../../redux/libraryActions';
 
-    
-    if (isLoading) {
-        return <LoadingMessage >Cargando canciones...</LoadingMessage>;
-    }
+const Home = ({ canciones }) => { 
+    const dispatch = useDispatch();
+    // Obtenemos la biblioteca actual de Redux
+    const biblioteca = useSelector(state => state.songs);
 
-    
     return (
-        <HomeContainer >
+        <HomeContainer>
             <Title>Canciones Disponibles</Title>
-            {canciones?.map(c => (
-                <ElementoCancion
-                    key={c.idTrack}
-                    info={c}
-                    alPresionarBoton={alAñadir}
-                    textoBoton="Añadir a Biblioteca"
-                />
-            ))}
+            {canciones?.map(c => {
+                // Verificamos si esta canción específica ya está guardada
+                const yaEstaAgregada = biblioteca.some(item => item.idTrack === c.idTrack);
+
+                return (
+                    <ElementoCancion
+                        key={c.idTrack}
+                        info={c}
+                        alPresionarBoton={() => dispatch(addSong(c))}
+                        // Pasamos el estado como prop
+                        estaEnBiblioteca={yaEstaAgregada} 
+                        textoBoton="Añadir a Biblioteca"
+                    />
+                );
+            })}
         </HomeContainer>
     );
-}; 
+};
 
 export default Home;

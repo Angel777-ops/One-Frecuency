@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const FormContainer = styled.form`
   padding: 20px;
-  text-align: center;
-  background-color: #9e9e9e;
   display: flex;
-  justify-content: center;
+  justify-content: center; 
+  align-items: center;     
   gap: 10px;
+  width: 100%;             
+  box-sizing: border-box;
+  border-radius: 25px;
 `;
 
 const StyledInput = styled.input`

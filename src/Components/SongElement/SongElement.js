@@ -1,12 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import { ActionButton, Card, InfoText, SongImage, StyledLink } from './styles';
 
-const SongElement = ({ info, alPresionarBoton, textoBoton }) => (
-  <Card style={{ 
-   
-  }}>
-    
+const SongElement = ({ info, alPresionarBoton, textoBoton, estaEnBiblioteca }) => (
+  <Card $estaEnBiblioteca={estaEnBiblioteca}>
     <SongImage src={info.strTrackThumb} alt={info.strTrack} />
     
     <StyledLink to={`/song/${info.idTrack}`} >
@@ -16,11 +13,16 @@ const SongElement = ({ info, alPresionarBoton, textoBoton }) => (
     <InfoText><span>Artista:</span> {info.strArtist}</InfoText>
     <InfoText><span>Álbum:</span> {info.strAlbum}</InfoText> 
     
+    {/* Cambiamos el comportamiento según 'estaEnBiblioteca' */}
     <ActionButton 
-      onClick={() => alPresionarBoton(info)} 
-      
+      onClick={() => !estaEnBiblioteca && alPresionarBoton(info)} 
+      disabled={estaEnBiblioteca}
+      style={{ 
+        backgroundColor: estaEnBiblioteca ? '#ccc' : '', 
+        cursor: estaEnBiblioteca ? 'not-allowed' : 'pointer' 
+      }}
     >
-      {textoBoton}
+      {estaEnBiblioteca ? "Canción Añadida" : textoBoton}
     </ActionButton>
   </Card>
 );

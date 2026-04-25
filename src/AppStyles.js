@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'; // O la librería que estés usando
-
+import { Link } from 'react-router-dom'; 
 const NavContainer = styled.nav`
   padding: 15px 30px;
   background-color: #222;

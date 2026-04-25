@@ -7,7 +7,7 @@ const Card = styled.div`
    align-items: center;
    
   gap: 20px;
-  border: 1px solid #0161fc;
+  border: 1px solid ${props => props.$estaEnBiblioteca ? 'red' : 'blue'};
   margin: 15px 0px;
   margin-right: 100px;
   margin-left: 100px;
