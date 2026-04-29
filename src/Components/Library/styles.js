@@ -18,7 +18,7 @@ const TitleLibrary = styled.h2`
 
 const EmptyMessage = styled.p`
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   color: #888;
   margin-top: 50px;
   font-style: italic;

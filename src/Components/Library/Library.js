@@ -2,16 +2,19 @@ import React from 'react';
 import ElementoCancion from '../SongElement/SongElement';
 import { EmptyMessage, LibraryContainer, TitleLibrary } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeSong } from '../../redux/libraryActions';
+// 1. Importa la acción desde el slice
+import { removeSong } from '../../redux/librarySlice'; 
 
 const Library = () => {
-  const cancionesGuardadas = useSelector(state => state.songs);
+  // 2. CORRECCIÓN: Accede a state.library.songs
+  const cancionesGuardadas = useSelector(state => state.library.songs);
   const dispatch = useDispatch();
 
   return (
     <LibraryContainer>
       <TitleLibrary>Mi Biblioteca</TitleLibrary>
-      {cancionesGuardadas.length === 0 ? (
+      {/* 3. Ahora cancionesGuardadas sí es un array y tiene .length */}
+      {!cancionesGuardadas || cancionesGuardadas.length === 0 ? (
         <EmptyMessage>Tu biblioteca está vacía.</EmptyMessage>
       ) : (
         cancionesGuardadas.map(c => (
@@ -26,6 +29,5 @@ const Library = () => {
     </LibraryContainer>
   );
 };
-
 
 export default Library;
